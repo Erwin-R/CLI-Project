@@ -11,6 +11,13 @@ public class Car {
     public Car() {
     }
 
+    public Car(int regNumber, double rentalPricePerDay, String brand, boolean isElectric) {
+        this.regNumber = regNumber;
+        this.rentalPricePerDay = rentalPricePerDay;
+        this.brand = brand;
+        this.isElectric = isElectric;
+    }
+
     public int getRegNumber() {
         return regNumber;
     }
