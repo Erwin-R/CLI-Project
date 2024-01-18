@@ -2,7 +2,7 @@ package com.potatochip.user;
 
 import java.util.UUID;
 
-public class UserDOA {
+public class UserDAO {
     private static final User[] users;
 
     static{
