@@ -3,6 +3,9 @@ package com.potatochip.car;
 public class CarService {
     private CarDAO carDAO;
 
+    public CarService() {
+    }
+
     public CarService(CarDAO carDAO) {
         this.carDAO = carDAO;
     }

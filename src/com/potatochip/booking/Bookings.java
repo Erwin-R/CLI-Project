@@ -14,17 +14,17 @@ public class Bookings {
     private User user;
     private Car car;
     private LocalDate bookingTime;
-    private boolean isCanceled;
+    private boolean isCanceled = false;
 
     public Bookings() {
     }
 
-    public Bookings(String bookingId, User user, Car car, LocalDate bookingTime, boolean isCanceled) {
+
+    public Bookings(String bookingId, User user, Car car, LocalDate bookingTime) {
         this.bookingId = bookingId;
         this.user = user;
         this.car = car;
         this.bookingTime = bookingTime;
-        this.isCanceled = isCanceled;
     }
 
     public String getBookingId() {

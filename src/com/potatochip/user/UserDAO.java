@@ -12,7 +12,7 @@ public class UserDAO {
         };
     }
 
-    public static User[] getUsers() {
+    public static User[] getAllUsers() {
         return users;
     }
 }
