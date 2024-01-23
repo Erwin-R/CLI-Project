@@ -1,5 +1,7 @@
 package com.potatochip.user;
 
+import com.potatochip.car.Car;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -7,7 +9,16 @@ public class User {
     private UUID id;
     private String name;
 
+    private Car[] userRentedCars;
     public User() {
+    }
+
+    public Car[] getUserRentedCars() {
+        return userRentedCars;
+    }
+
+    public void setUserRentedCars(Car[] userRentedCars) {
+        this.userRentedCars = userRentedCars;
     }
 
     public User(UUID id, String name) {

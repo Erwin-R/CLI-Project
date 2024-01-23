@@ -1,11 +1,13 @@
 package com.potatochip;
 
+import com.potatochip.booking.Bookings;
 import com.potatochip.booking.BookingsService;
 import com.potatochip.car.Car;
 import com.potatochip.car.CarService;
 import com.potatochip.user.User;
 import com.potatochip.user.UserService;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -43,17 +45,27 @@ public class Main {
                 }
                 System.out.println("➡\uFE0F select user id");
                 String userId = scanner.next();
+                User foundUser = userService.getOneUser(userId);
+                Car foundCar = carService.getOneCar(carRegNum);
+                Bookings newBooking = bookingsService.bookACar(foundUser, foundCar, LocalDate.now());
+
                 System.out.println(
                         "\uD83C\uDF89 succeffully booked car with reg number " + carRegNum
-                        + "for user"
+                        + "for user " + foundUser + "\n Booking ref: " + newBooking.getBookingId()
                 );
 
             }
             else if(input == 3){
                 System.out.println(Arrays.toString(bookingsService.getBookings()));
+            }else if(input == 4){
+                for(Car car: carService.getCars()){
+                    System.out.println(car);
+                }
             }
             else if(input == 6){
-                System.out.println(Arrays.toString(userService.getUsers()));;
+                for(User user: userService.getUsers()){
+                    System.out.println(user);
+                }
             }
             else if(input == 7){
                 break;

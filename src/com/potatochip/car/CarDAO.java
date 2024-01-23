@@ -3,6 +3,7 @@ package com.potatochip.car;
 public class CarDAO {
     private static final Car[] cars;
     private Car[] electricCars;
+    private int nextAvailableSlot = 0;
 
     static{
         cars = new Car[]{
@@ -13,12 +14,20 @@ public class CarDAO {
         };
     }
 
-    public static Car[] selectAllCars() {
+    public Car[] selectAllCars() {
         return cars;
     }
 
     public Car[] selectAllElectricCars(){
         return electricCars;
+    }
+
+    public void registerElectricCar(Car car){
+        if(car.isElectric()){
+            cars[nextAvailableSlot] = car;
+            nextAvailableSlot++;
+
+        }
     }
 
 }

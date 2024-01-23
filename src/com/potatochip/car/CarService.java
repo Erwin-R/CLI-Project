@@ -1,17 +1,15 @@
 package com.potatochip.car;
+import com.potatochip.car.CarDAO;
 
 public class CarService {
-    private CarDAO carDAO;
+    private  CarDAO carDAO;
 
     public CarService() {
-    }
-
-    public CarService(CarDAO carDAO) {
-        this.carDAO = carDAO;
+        this.carDAO = new CarDAO();
     }
 
     public void registerNewCar(Car car){
-        Car[] cars = CarDAO.selectAllCars();
+        Car[] cars = carDAO.selectAllCars();
         if(car != null){
             for(int i = 0; i < cars.length; i++){
                 if(car.getRegNumber() == cars[i].getRegNumber()){
@@ -27,12 +25,32 @@ public class CarService {
     }
 
     public Car[] getCars(){
-        return CarDAO.selectAllCars();
+        return carDAO.selectAllCars();
     }
 
     public void registerElectricCar(Car car){
         if(car.isElectric()){
-            System.out.println();
+            ;
+        }
+    }
+
+    public Car getOneCar(int carRegNumber){
+        Car[] cars = carDAO.selectAllCars();
+        for(Car car: cars){
+            if(car.getRegNumber() == carRegNumber){
+                return car;
+            }
+        }
+
+        throw new RuntimeException("Invalid Car Registration Number");
+    }
+
+    public void removeCar(Car bookedCar){
+        Car[] cars = carDAO.selectAllCars();
+        for(int i = 0; i < cars.length; i++){
+            if(cars[i].equals(bookedCar)){
+                cars[i] = null;
+            }
         }
     }
 
