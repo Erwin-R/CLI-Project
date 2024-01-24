@@ -15,6 +15,7 @@ public class BookingsService {
 
     //need to remove car from cars array
     //remove car from electric cars array
+//add to user bookings array
     public Bookings bookACar(User user, Car car, LocalDate bookingTime){
         UUID uuid = UUID.randomUUID();
         String uuidAsString = uuid.toString();

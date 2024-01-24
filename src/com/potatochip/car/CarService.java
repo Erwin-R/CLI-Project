@@ -27,12 +27,10 @@ public class CarService {
     public Car[] getCars(){
         return carDAO.selectAllCars();
     }
-
-    public void registerElectricCar(Car car){
-        if(car.isElectric()){
-            ;
-        }
+    public Car[] getElectricCars(){
+        return carDAO.selectAllElectricCars();
     }
+
 
     public Car getOneCar(int carRegNumber){
         Car[] cars = carDAO.selectAllCars();

@@ -17,6 +17,7 @@ public class Main {
         UserService userService = new UserService();
         BookingsService bookingsService = new BookingsService();
 
+
         System.out.println("Hello world!");
         System.out.println("""
                 1️⃣ - Book Car
@@ -55,10 +56,19 @@ public class Main {
                 );
 
             }
+            else if(input == 2){
+                System.out.println();
+            }
             else if(input == 3){
                 System.out.println(Arrays.toString(bookingsService.getBookings()));
-            }else if(input == 4){
+            }
+            else if(input == 4){
                 for(Car car: carService.getCars()){
+                    System.out.println(car);
+                }
+            }
+            else if(input == 5){
+                for(Car car: carService.getElectricCars()){
                     System.out.println(car);
                 }
             }

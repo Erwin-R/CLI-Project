@@ -1,9 +1,12 @@
 package com.potatochip.user;
 
+import com.potatochip.car.Car;
+
 import java.util.UUID;
 
 public class UserDAO {
     private static final User[] users;
+    private Car[] userCars;
 
     static{
         users = new User[]{
@@ -15,4 +18,7 @@ public class UserDAO {
     public User[] getAllUsers() {
         return users;
     }
+
+    public Car[] getUserCars(){return userCars;}
+
 }
