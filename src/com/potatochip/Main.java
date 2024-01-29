@@ -1,10 +1,10 @@
 package com.potatochip;
 
 import com.potatochip.booking.Bookings;
-import com.potatochip.booking.BookingsDAO;
+import com.potatochip.booking.BookingsArrayDataAccessService;
 import com.potatochip.booking.BookingsService;
 import com.potatochip.car.Car;
-import com.potatochip.car.CarDAO;
+import com.potatochip.car.CarArrayDataAccessService;
 import com.potatochip.car.CarService;
 import com.potatochip.user.User;
 import com.potatochip.user.UserArrayDataAccessService;
@@ -18,10 +18,10 @@ public class Main {
     public static void main(String[] args) {
         UserArrayDataAccessService userArrayDataAccessService = new UserArrayDataAccessService();
         UserService userService = new UserService(userArrayDataAccessService);
-        CarDAO carDAO = new CarDAO();
-        CarService carService = new CarService(carDAO);
-        BookingsDAO bookingsDAO = new BookingsDAO();
-        BookingsService bookingsService = new BookingsService(bookingsDAO);
+        CarArrayDataAccessService carArrayDataAccessService = new CarArrayDataAccessService();
+        CarService carService = new CarService(carArrayDataAccessService);
+        BookingsArrayDataAccessService bookingsArrayDataAccessService = new BookingsArrayDataAccessService();
+        BookingsService bookingsService = new BookingsService(bookingsArrayDataAccessService);
 
 
         System.out.println("Hello world!");

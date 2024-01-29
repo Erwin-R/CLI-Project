@@ -1,15 +1,14 @@
 package com.potatochip.car;
-import com.potatochip.car.CarDAO;
 
 public class CarService {
-    private final CarDAO carDAO;
+    private final CarArrayDataAccessService carArrayDataAccessService;
 
-    public CarService(CarDAO carDAO) {
-        this.carDAO = carDAO;
+    public CarService(CarArrayDataAccessService carArrayDataAccessService) {
+        this.carArrayDataAccessService = carArrayDataAccessService;
     }
 
     public void registerNewCar(Car car){
-        Car[] cars = carDAO.selectAllCars();
+        Car[] cars = carArrayDataAccessService.selectAllCars();
         if(car != null){
             for(int i = 0; i < cars.length; i++){
                 if(car.getRegNumber() == cars[i].getRegNumber()){
@@ -25,15 +24,15 @@ public class CarService {
     }
 
     public Car[] getCars(){
-        return carDAO.selectAllCars();
+        return carArrayDataAccessService.selectAllCars();
     }
     public Car[] getElectricCars(){
-        return carDAO.selectAllElectricCars();
+        return carArrayDataAccessService.selectAllElectricCars();
     }
 
 
     public Car getOneCar(int carRegNumber){
-        Car[] cars = carDAO.selectAllCars();
+        Car[] cars = carArrayDataAccessService.selectAllCars();
         for(Car car: cars){
             if(car.getRegNumber() == carRegNumber){
                 return car;
@@ -44,8 +43,8 @@ public class CarService {
     }
 
     public void removeCar(Car bookedCar){
-        Car[] cars = carDAO.selectAllCars();
-        Car[] electricCars = carDAO.selectAllElectricCars();
+        Car[] cars = carArrayDataAccessService.selectAllCars();
+        Car[] electricCars = carArrayDataAccessService.selectAllElectricCars();
         for(int i = 0; i < cars.length; i++){
             if(cars[i].equals(bookedCar)){
                 cars[i] = null;

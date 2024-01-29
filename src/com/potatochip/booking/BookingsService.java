@@ -7,10 +7,10 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class BookingsService {
-    private final BookingsDAO bookingsDAO;
+    private final BookingsArrayDataAccessService bookingsArrayDataAccessService;
 
-    public BookingsService(BookingsDAO bookingsDAO) {
-        this.bookingsDAO = bookingsDAO;
+    public BookingsService(BookingsArrayDataAccessService bookingsArrayDataAccessService) {
+        this.bookingsArrayDataAccessService = bookingsArrayDataAccessService;
     }
 
     //need to remove car from cars array
@@ -19,11 +19,11 @@ public class BookingsService {
         UUID uuid = UUID.randomUUID();
         String uuidAsString = uuid.toString();
         Bookings newBooking = new Bookings(uuidAsString, user, car, bookingTime);
-        bookingsDAO.saveBooking(newBooking);
+        bookingsArrayDataAccessService.saveBooking(newBooking);
         user.saveCar(car);
         return newBooking;
     }
     public Bookings[] getBookings(){
-        return bookingsDAO.getAllBookings();
+        return bookingsArrayDataAccessService.getAllBookings();
     }
 }
