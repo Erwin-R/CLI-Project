@@ -2,10 +2,10 @@ package com.potatochip.car;
 import com.potatochip.car.CarDAO;
 
 public class CarService {
-    private  CarDAO carDAO;
+    private final CarDAO carDAO;
 
-    public CarService() {
-        this.carDAO = new CarDAO();
+    public CarService(CarDAO carDAO) {
+        this.carDAO = carDAO;
     }
 
     public void registerNewCar(Car car){
@@ -45,9 +45,16 @@ public class CarService {
 
     public void removeCar(Car bookedCar){
         Car[] cars = carDAO.selectAllCars();
+        Car[] electricCars = carDAO.selectAllElectricCars();
         for(int i = 0; i < cars.length; i++){
             if(cars[i].equals(bookedCar)){
                 cars[i] = null;
+            }
+        }
+
+        for(int i = 0; i < electricCars.length; i++){
+            if(bookedCar.isElectric() && bookedCar.equals(electricCars[i])){
+                electricCars[i] = null;
             }
         }
     }

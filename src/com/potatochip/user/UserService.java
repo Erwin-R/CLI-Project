@@ -1,22 +1,22 @@
 package com.potatochip.user;
 
 
-import com.potatochip.user.UserDAO;
+import com.potatochip.car.Car;
 
 public class UserService {
-    private UserDAO userDAO;
+    private final UserArrayDataAccessService userArrayDataAccessService;
 
-    public UserService() {
-        this.userDAO = new UserDAO();
+    public UserService(UserArrayDataAccessService userArrayDataAccessService) {
+        this.userArrayDataAccessService = userArrayDataAccessService;
     }
 
     public User[] getUsers(){
-        return userDAO.getAllUsers();
+        return userArrayDataAccessService.getAllUsers();
     }
 
     public User getOneUser(String userId){
 
-        User[] users = userDAO.getAllUsers();
+        User[] users = userArrayDataAccessService.getAllUsers();
         for(User user: users){
             if(user.getId().toString().equals(userId)){
                 return user;
@@ -25,5 +25,15 @@ public class UserService {
 
         throw new RuntimeException("Invalid user");
     }
+
+    public Car[] getUserCars(String userId){
+        for(User user: userArrayDataAccessService.getAllUsers()){
+            if(user.getId().toString().equals(userId)){
+                return userArrayDataAccessService.getCars();
+            }
+        }
+        throw new RuntimeException("invalid user");
+    }
+
 
 }

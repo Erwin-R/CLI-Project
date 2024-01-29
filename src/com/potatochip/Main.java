@@ -1,10 +1,13 @@
 package com.potatochip;
 
 import com.potatochip.booking.Bookings;
+import com.potatochip.booking.BookingsDAO;
 import com.potatochip.booking.BookingsService;
 import com.potatochip.car.Car;
+import com.potatochip.car.CarDAO;
 import com.potatochip.car.CarService;
 import com.potatochip.user.User;
+import com.potatochip.user.UserArrayDataAccessService;
 import com.potatochip.user.UserService;
 
 import java.time.LocalDate;
@@ -13,9 +16,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        CarService carService = new CarService();
-        UserService userService = new UserService();
-        BookingsService bookingsService = new BookingsService();
+        UserArrayDataAccessService userArrayDataAccessService = new UserArrayDataAccessService();
+        UserService userService = new UserService(userArrayDataAccessService);
+        CarDAO carDAO = new CarDAO();
+        CarService carService = new CarService(carDAO);
+        BookingsDAO bookingsDAO = new BookingsDAO();
+        BookingsService bookingsService = new BookingsService(bookingsDAO);
 
 
         System.out.println("Hello world!");
@@ -49,6 +55,7 @@ public class Main {
                 User foundUser = userService.getOneUser(userId);
                 Car foundCar = carService.getOneCar(carRegNum);
                 Bookings newBooking = bookingsService.bookACar(foundUser, foundCar, LocalDate.now());
+                carService.removeCar(foundCar);
 
                 System.out.println(
                         "\uD83C\uDF89 succeffully booked car with reg number " + carRegNum
@@ -57,10 +64,19 @@ public class Main {
 
             }
             else if(input == 2){
-                System.out.println();
+                for(User user: userService.getUsers()){
+                    System.out.println(user);
+                }
+                System.out.println("Select user id");
+                String userId = scanner.next();
+                System.out.println(Arrays.toString(userService.getUserCars(userId)));
             }
             else if(input == 3){
-                System.out.println(Arrays.toString(bookingsService.getBookings()));
+                if (bookingsService.getBookings().length > 0) {
+                    System.out.println(Arrays.toString(bookingsService.getBookings()));
+                } else{
+                    System.out.println("Currently no bookings");
+                }
             }
             else if(input == 4){
                 for(Car car: carService.getCars()){

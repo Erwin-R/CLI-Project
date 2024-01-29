@@ -10,13 +10,16 @@ public class User {
     private UUID id;
     private String name;
 
-    private Bookings[] userBookings;
+    private int capacity = 2;
+    private int nextAvailableSlot = 0;
+    private static Car[] userCars;
     public User() {
     }
 
     public User(UUID id, String name) {
         this.id = id;
         this.name = name;
+        this.userCars = new Car[capacity];
     }
 
     public UUID getId() {
@@ -33,6 +36,30 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getNextAvailableSlot() {
+        return nextAvailableSlot;
+    }
+
+    public void setNextAvailableSlot(int nextAvailableSlot) {
+        this.nextAvailableSlot = nextAvailableSlot;
+    }
+
+    public static Car[] getUserCars() {
+        return userCars;
+    }
+
+    public void setUserCars(Car[] userCars) {
+        this.userCars = userCars;
     }
 
     @Override
@@ -54,5 +81,15 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    public void saveCar(Car car){
+        if(nextAvailableSlot + 1 <= capacity){
+            userCars[nextAvailableSlot] = car;
+            nextAvailableSlot++;
+        } else{
+            System.out.println("User cannot book more cars.");
+        }
+
     }
 }

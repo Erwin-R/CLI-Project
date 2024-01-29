@@ -1,8 +1,12 @@
 package com.potatochip.booking;
 
 public class BookingsDAO {
-    private Bookings[] bookings;
+    private static Bookings[] bookings;
     private int nextAvailableSlot = 0;
+
+    static{
+        bookings = new Bookings[2];
+    }
 
     public Bookings[] getAllBookings(){
         return bookings;
