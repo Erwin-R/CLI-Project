@@ -5,6 +5,7 @@ import com.potatochip.user.User;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class CarArrayDataAccessService implements CarDAO {
@@ -19,6 +20,7 @@ public class CarArrayDataAccessService implements CarDAO {
             int j = 0;
             while((line = reader.readLine()) != null){
                 String[] fields = line.split(",");
+                Arrays.setAll(fields, k -> fields[k].strip());
                 int carRegNum = Integer.parseInt(fields[0]);
                 double rentalPrice = Double.parseDouble(fields[1]);
                 String carBrand = fields[2];
