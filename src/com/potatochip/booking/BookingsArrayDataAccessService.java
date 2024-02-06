@@ -1,16 +1,20 @@
 package com.potatochip.booking;
 
+import java.awt.print.Book;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookingsArrayDataAccessService implements BookingsDAO {
-    private static final Bookings[] bookings = new Bookings[2];
+    private static final List<Bookings> bookings = new ArrayList<>();
     private int nextAvailableSlot = 0;
 
     @Override
-    public Bookings[] getAllBookings(){
+    public List<Bookings> getAllBookings(){
         return bookings;
     }
     @Override
     public void saveBooking (Bookings booking){
-        bookings[nextAvailableSlot] = booking;
+        bookings.add(booking);
         nextAvailableSlot++;
     }
 

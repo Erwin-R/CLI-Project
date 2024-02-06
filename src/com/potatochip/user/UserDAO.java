@@ -1,5 +1,7 @@
 package com.potatochip.user;
 
+import java.util.List;
+
 public interface UserDAO {
-    User[] getAllUsers();
+    List<User> getAllUsers();
 }

@@ -4,6 +4,7 @@ import com.potatochip.car.Car;
 import com.potatochip.user.User;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 public class BookingsService {
@@ -23,7 +24,7 @@ public class BookingsService {
         user.saveCar(car);
         return newBooking;
     }
-    public Bookings[] getBookings(){
+    public List<Bookings> getBookings(){
         return bookingsArrayDataAccessService.getAllBookings();
     }
 }

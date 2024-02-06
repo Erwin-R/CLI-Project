@@ -6,22 +6,22 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class UserArrayDataAccessService implements UserDAO{
-    private static final User[] users = new User[4];
+    private static final List<User> users = new ArrayList<>();
     private Car[] userCars;
 
     static{
         try {
             BufferedReader reader = new BufferedReader(new FileReader("src/com/potatochip/user/users.csv"));
             String line;
-            int i = 0;
             while((line = reader.readLine()) != null){
                 String[] fields = line.split(",");
-                users[i] = new User(UUID.fromString(fields[0]), fields[1]);
-                i++;
+                users.add(new User(UUID.fromString(fields[0]), fields[1]));
             }
 
         } catch (IOException e) {
@@ -29,10 +29,10 @@ public class UserArrayDataAccessService implements UserDAO{
         }
     }
     @Override
-    public User[] getAllUsers() {
+    public List<User> getAllUsers() {
         return users;
     }
 
-    public Car[] getCars(){return User.getUserCars();}
+    public List<Car> getCars(){return User.getUserCars();}
 
 }

@@ -3,6 +3,8 @@ package com.potatochip.user;
 import com.potatochip.booking.Bookings;
 import com.potatochip.car.Car;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -12,14 +14,14 @@ public class User {
 
     private int capacity = 2;
     private int nextAvailableSlot = 0;
-    private static Car[] userCars;
+    private static List<Car> userCars = new ArrayList<>();
     public User() {
     }
 
     public User(UUID id, String name) {
         this.id = id;
         this.name = name;
-        this.userCars = new Car[capacity];
+//        this.userCars = new ArrayList<>();
     }
 
     public UUID getId() {
@@ -54,12 +56,12 @@ public class User {
         this.nextAvailableSlot = nextAvailableSlot;
     }
 
-    public static Car[] getUserCars() {
+    public static List<Car> getUserCars() {
         return userCars;
     }
 
-    public void setUserCars(Car[] userCars) {
-        this.userCars = userCars;
+    public void setUserCars(List<Car> userCars) {
+        User.userCars = userCars;
     }
 
     @Override
@@ -84,9 +86,8 @@ public class User {
     }
 
     public void saveCar(Car car){
-        if(nextAvailableSlot + 1 <= capacity){
-            userCars[nextAvailableSlot] = car;
-            nextAvailableSlot++;
+        if(userCars.size() <= capacity){
+            userCars.add(car);
         } else{
             System.out.println("User cannot book more cars.");
         }

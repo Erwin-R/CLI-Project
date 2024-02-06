@@ -3,6 +3,8 @@ package com.potatochip.user;
 
 import com.potatochip.car.Car;
 
+import java.util.List;
+
 public class UserService {
     private final UserArrayDataAccessService userArrayDataAccessService;
 
@@ -10,13 +12,13 @@ public class UserService {
         this.userArrayDataAccessService = userArrayDataAccessService;
     }
 
-    public User[] getUsers(){
+    public List<User> getUsers(){
         return userArrayDataAccessService.getAllUsers();
     }
 
     public User getOneUser(String userId){
 
-        User[] users = userArrayDataAccessService.getAllUsers();
+        List<User> users = userArrayDataAccessService.getAllUsers();
         for(User user: users){
             if(user.getId().toString().equals(userId)){
                 return user;
@@ -26,7 +28,7 @@ public class UserService {
         throw new RuntimeException("Invalid user");
     }
 
-    public Car[] getUserCars(String userId){
+    public List<Car> getUserCars(String userId){
         for(User user: userArrayDataAccessService.getAllUsers()){
             if(user.getId().toString().equals(userId)){
                 return userArrayDataAccessService.getCars();

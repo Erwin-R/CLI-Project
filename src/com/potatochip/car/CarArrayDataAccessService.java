@@ -5,12 +5,14 @@ import com.potatochip.user.User;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class CarArrayDataAccessService implements CarDAO {
-    private static final Car[] cars = new Car[4];
-    private static final Car[] electricCars = new Car[1];
+    private static final List<Car> cars = new ArrayList<>();
+    private static final List<Car> electricCars = new ArrayList<>();
 
     static{
         try {
@@ -24,13 +26,13 @@ public class CarArrayDataAccessService implements CarDAO {
                 int carRegNum = Integer.parseInt(fields[0]);
                 double rentalPrice = Double.parseDouble(fields[1]);
                 String carBrand = fields[2];
-                boolean trueVal = Boolean.valueOf(fields[3]);
-                boolean isElectric = trueVal;
-                cars[i] = new Car(carRegNum, rentalPrice, carBrand, isElectric);
-                System.out.println(cars[i].toString());
-                if(cars[i].isElectric()){
-                    electricCars[j] = cars[i];
-                    j++;
+                boolean isElectric = Boolean.valueOf(fields[3]);
+                cars.add(new Car(carRegNum, rentalPrice, carBrand, isElectric));
+                for(Car car: cars){
+                    System.out.println(car.toString());
+                }
+                if(cars.get(i).isElectric()){
+                    electricCars.add(cars.get(i));
                 }
                 i++;
             }
@@ -40,11 +42,11 @@ public class CarArrayDataAccessService implements CarDAO {
         }
     }
     @Override
-    public Car[] selectAllCars() {
+    public List<Car> selectAllCars() {
         return cars;
     }
     @Override
-    public Car[] selectAllElectricCars(){
+    public List<Car> selectAllElectricCars(){
         return electricCars;
     }
 

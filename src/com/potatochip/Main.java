@@ -12,6 +12,7 @@ import com.potatochip.user.UserService;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -69,11 +70,14 @@ public class Main {
                 }
                 System.out.println("Select user id");
                 String userId = scanner.next();
-                System.out.println(Arrays.toString(userService.getUserCars(userId)));
+                System.out.println(userService.getUserCars(userId));
             }
             else if(input == 3){
-                if (bookingsService.getBookings().length > 0) {
-                    System.out.println(Arrays.toString(bookingsService.getBookings()));
+                if (!bookingsService.getBookings().isEmpty()) {
+                    List<Bookings> bookings = bookingsService.getBookings();
+                    for(Bookings booking: bookings){
+                        System.out.println("booking = " + booking);
+                    }
                 } else{
                     System.out.println("Currently no bookings");
                 }

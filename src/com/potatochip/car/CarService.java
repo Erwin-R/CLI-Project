@@ -1,5 +1,7 @@
 package com.potatochip.car;
 
+import java.util.List;
+
 public class CarService {
     private final CarArrayDataAccessService carArrayDataAccessService;
 
@@ -8,31 +10,28 @@ public class CarService {
     }
 
     public void registerNewCar(Car car){
-        Car[] cars = carArrayDataAccessService.selectAllCars();
+        List<Car> cars = carArrayDataAccessService.selectAllCars();
         if(car != null){
-            for(int i = 0; i < cars.length; i++){
-                if(car.getRegNumber() == cars[i].getRegNumber()){
+            for(int i = 0; i < cars.size(); i++){
+                if(car.getRegNumber() == cars.get(i).getRegNumber()){
                     System.out.println("Car reg number is already taken!");
                     break;
                 }
-                if(cars[i + 1] == null){
-                    cars[i + 1] = car;
-                }
             }
-
+            cars.add(car);
         }
     }
 
-    public Car[] getCars(){
+    public List<Car> getCars(){
         return carArrayDataAccessService.selectAllCars();
     }
-    public Car[] getElectricCars(){
+    public List<Car> getElectricCars(){
         return carArrayDataAccessService.selectAllElectricCars();
     }
 
 
     public Car getOneCar(int carRegNumber){
-        Car[] cars = carArrayDataAccessService.selectAllCars();
+        List<Car> cars = carArrayDataAccessService.selectAllCars();
         for(Car car: cars){
             if(car.getRegNumber() == carRegNumber){
                 return car;
@@ -43,17 +42,17 @@ public class CarService {
     }
 
     public void removeCar(Car bookedCar){
-        Car[] cars = carArrayDataAccessService.selectAllCars();
-        Car[] electricCars = carArrayDataAccessService.selectAllElectricCars();
-        for(int i = 0; i < cars.length; i++){
-            if(cars[i].equals(bookedCar)){
-                cars[i] = null;
+        List<Car> cars = carArrayDataAccessService.selectAllCars();
+        List<Car> electricCars = carArrayDataAccessService.selectAllElectricCars();
+        for(int i = 0; i < cars.size(); i++){
+            if(cars.get(i).equals(bookedCar)){
+                cars.remove(cars.get(i));
             }
         }
 
-        for(int i = 0; i < electricCars.length; i++){
-            if(bookedCar.isElectric() && bookedCar.equals(electricCars[i])){
-                electricCars[i] = null;
+        for(int i = 0; i < electricCars.size(); i++){
+            if(bookedCar.isElectric() && bookedCar.equals(electricCars.get(i))){
+                electricCars.remove(cars.get(i));
             }
         }
     }
