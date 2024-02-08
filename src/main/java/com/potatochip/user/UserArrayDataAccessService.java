@@ -1,38 +1,22 @@
 package com.potatochip.user;
 
-import com.potatochip.car.Car;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-public class UserArrayDataAccessService implements UserDAO{
-    private static final List<User> users = new ArrayList<>();
-    private Car[] userCars;
+public class UserArrayDataAccessService implements UserDAO {
+    private static final User[] users;
 
-    static{
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/com/potatochip/user/users.csv"));
-            String line;
-            while((line = reader.readLine()) != null){
-                String[] fields = line.split(",");
-                users.add(new User(UUID.fromString(fields[0]), fields[1]));
-            }
-
-        } catch (IOException e) {
-            System.out.println("An error occured: " + e);;
-        }
+    static {
+        users = new User[]{
+                new User(UUID.fromString("8ca51d2b-aaaf-4bf2-834a-e02964e10fc3"), "James"),
+                new User(UUID.fromString("b10d126a-3608-4980-9f9c-aa179f5cebc3"), "Jamila")
+        };
     }
+
+
     @Override
     public List<User> getAllUsers() {
-        return users;
+        return Arrays.asList(users);
     }
-
-    public List<Car> getCars(){return User.getUserCars();}
-
 }

@@ -1,6 +1,5 @@
 package com.potatochip.user;
 
-import com.potatochip.booking.Bookings;
 import com.potatochip.car.Car;
 
 import java.util.ArrayList;
@@ -11,10 +10,6 @@ import java.util.UUID;
 public class User {
     private UUID id;
     private String name;
-
-    private int capacity = 2;
-    private int nextAvailableSlot = 0;
-    private static List<Car> userCars = new ArrayList<>();
     public User() {
     }
 
@@ -40,30 +35,6 @@ public class User {
         this.name = name;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public int getNextAvailableSlot() {
-        return nextAvailableSlot;
-    }
-
-    public void setNextAvailableSlot(int nextAvailableSlot) {
-        this.nextAvailableSlot = nextAvailableSlot;
-    }
-
-    public static List<Car> getUserCars() {
-        return userCars;
-    }
-
-    public void setUserCars(List<Car> userCars) {
-        User.userCars = userCars;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -85,12 +56,4 @@ public class User {
         return Objects.hash(id, name);
     }
 
-    public void saveCar(Car car){
-        if(userCars.size() <= capacity){
-            userCars.add(car);
-        } else{
-            System.out.println("User cannot book more cars.");
-        }
-
-    }
 }

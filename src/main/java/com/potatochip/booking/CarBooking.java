@@ -4,34 +4,33 @@ import com.potatochip.user.User;
 import com.potatochip.car.Car;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
-public class Bookings {
+public class CarBooking {
     /*
     booking class has bookingId, user attached to booking, car attached to booking,
     bookingTime, and isCanceled
    */
-    private String bookingId;
+    private UUID bookingId;
     private User user;
     private Car car;
     private LocalDate bookingTime;
     private boolean isCanceled = false;
 
-    public Bookings() {
-    }
 
 
-    public Bookings(String bookingId, User user, Car car, LocalDate bookingTime) {
+    public CarBooking(UUID bookingId, User user, Car car, LocalDate bookingTime) {
         this.bookingId = bookingId;
         this.user = user;
         this.car = car;
         this.bookingTime = bookingTime;
     }
 
-    public String getBookingId() {
+    public UUID getBookingId() {
         return bookingId;
     }
 
-    public void setBookingId(String bookingId) {
+    public void setBookingId(UUID bookingId) {
         this.bookingId = bookingId;
     }
 

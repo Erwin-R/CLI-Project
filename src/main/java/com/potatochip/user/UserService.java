@@ -4,37 +4,27 @@ package com.potatochip.user;
 import com.potatochip.car.Car;
 
 import java.util.List;
+import java.util.UUID;
 
 public class UserService {
-    private final UserArrayDataAccessService userArrayDataAccessService;
+    private final UserDAO userDAO;
 
-    public UserService(UserArrayDataAccessService userArrayDataAccessService) {
-        this.userArrayDataAccessService = userArrayDataAccessService;
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     public List<User> getUsers(){
-        return userArrayDataAccessService.getAllUsers();
+        return userDAO.getAllUsers();
     }
 
-    public User getOneUser(String userId){
-
-        List<User> users = userArrayDataAccessService.getAllUsers();
-        for(User user: users){
-            if(user.getId().toString().equals(userId)){
+    public User getOneUser(UUID userId){
+        for(User user: getUsers()){
+            if(user.getId().equals(userId)){
                 return user;
             }
         }
 
-        throw new RuntimeException("Invalid user");
-    }
-
-    public List<Car> getUserCars(String userId){
-        for(User user: userArrayDataAccessService.getAllUsers()){
-            if(user.getId().toString().equals(userId)){
-                return userArrayDataAccessService.getCars();
-            }
-        }
-        throw new RuntimeException("invalid user");
+        return null;
     }
 
 
