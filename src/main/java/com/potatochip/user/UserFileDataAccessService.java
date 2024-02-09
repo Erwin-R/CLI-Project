@@ -3,22 +3,21 @@ package com.potatochip.user;
 import com.potatochip.car.Car;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class UserFileDataAccessService implements UserDAO{
 
     @Override
     public List<User> getAllUsers() {
+        File file = new File(getClass().getClassLoader().getResource("users.csv").getPath());
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/com/potatochip/user/users.csv"));
+            Scanner scanner = new Scanner(file);
             List<User> users = new ArrayList<>();
-            String line;
-            while((line = reader.readLine()) != null){
-                String[] fields = line.split(",");
+            while(scanner.hasNext()){
+                String[] fields = scanner.nextLine().split(",");
                 users.add(new User(UUID.fromString(fields[0]), fields[1]));
             }
             return users;

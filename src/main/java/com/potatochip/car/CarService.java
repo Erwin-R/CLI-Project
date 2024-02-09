@@ -3,6 +3,7 @@ package com.potatochip.car;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarService {
     private final CarDAO carDAO;
@@ -17,17 +18,23 @@ public class CarService {
     public List<Car> getAllElectricCars(){
         List<Car> cars = getAllCars();
 
-        if(cars.isEmpty()){
-            return Collections.emptyList();
-        }
-        List<Car> electricCars = new ArrayList<>();
+        // Imperative Solution
+//        if(cars.isEmpty()){
+//            return Collections.emptyList();
+//        }
+//        List<Car> electricCars = new ArrayList<>();
+//
+//        for(Car car: cars){
+//            if(car.isElectric()){
+//                electricCars.add(car);
+//            }
+//        }
+//        return electricCars;
 
-        for(Car car: cars){
-            if(car.isElectric()){
-                electricCars.add(car);
-            }
-        }
-        return electricCars;
+
+        //Declarative Solution
+        return cars.stream().filter(Car::isElectric).collect(Collectors.toList());
+
     }
 
 

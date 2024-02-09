@@ -43,8 +43,8 @@ public class Main {
         boolean keepLooping = true;
         while(keepLooping){
             try {
-                int input = scanner.nextInt();
-                switch(input){
+                String input = scanner.nextLine();
+                switch(Integer.parseInt(input)){
                     case 1 -> bookCar(userService, carBookingService, scanner);
                     case 2 -> displayAllUserBookedCars(userService, carBookingService, scanner);
                     case 3 -> displayAllBookings(carBookingService);
@@ -70,20 +70,24 @@ public class Main {
         System.out.println("Select car reg number");
         int regNumber = scanner.nextInt();
 
+        displayAllUsers(userService);
         System.out.println("Select user id");
         String userId = scanner.nextLine();
 
-
-        User user = userService.getOneUser(UUID.fromString(userId));
-        if(user == null){
-            System.out.println("No user found with id: " + userId);
-        } else{
-            UUID bookingId = carBookingService.bookACar(user, regNumber);
-            String confirmationMessage = """
-                Successfully booked car with reg number %s for user %s
-                Booking ref: %s
-            """.formatted(regNumber, user, bookingId);
-            System.out.println(confirmationMessage);
+        try{
+            User user = userService.getOneUser(UUID.fromString(userId));
+            if(user == null){
+                System.out.println("No user found with id: " + userId);
+            } else{
+                UUID bookingId = carBookingService.bookACar(user, regNumber);
+                String confirmationMessage = """
+                    Successfully booked car with reg number %s for user %s
+                    Booking ref: %s
+                """.formatted(regNumber, user, bookingId);
+                System.out.println(confirmationMessage);
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
 
     }
