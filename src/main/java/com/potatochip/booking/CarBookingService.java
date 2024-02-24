@@ -21,7 +21,7 @@ public class CarBookingService {
 
     //need to remove car from cars array
     //remove car from electric cars array
-    public UUID bookACar(User user, int regNumber){
+    public UUID bookACar(User user, String regNumber){
         List<Car> availableCars = getAvailableCars();
 
         if(availableCars.isEmpty()){
@@ -29,7 +29,7 @@ public class CarBookingService {
         }
 
         for(Car availableCar: availableCars){
-            if(availableCar.getRegNumber() == regNumber){
+            if(availableCar.getRegNumber().equals(regNumber)){
                 Car car = carService.getOneCar(regNumber);
                 UUID bookingId = UUID.randomUUID();
                 carBookingDAO.saveBooking(

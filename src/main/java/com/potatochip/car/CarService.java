@@ -38,9 +38,9 @@ public class CarService {
     }
 
 
-    public Car getOneCar(int carRegNumber){
+    public Car getOneCar(String carRegNumber){
         for(Car car: getAllCars()){
-            if(car.getRegNumber() == carRegNumber){
+            if(car.getRegNumber().equals(carRegNumber)){
                 return car;
             }
         }

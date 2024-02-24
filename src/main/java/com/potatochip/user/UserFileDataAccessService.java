@@ -1,6 +1,7 @@
 package com.potatochip.user;
 
 import com.potatochip.car.Car;
+import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+@Repository("fileData")
 public class UserFileDataAccessService implements UserDAO{
 
     @Override

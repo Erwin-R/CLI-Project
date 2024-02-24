@@ -9,9 +9,9 @@ import java.util.List;
 
 public class CarDAO{
     private static final List<Car> cars = Arrays.asList(
-            new Car(1234, 89.00, "TESLA", true),
-            new Car(5678, 50.00, "AUDI", false),
-            new Car(2468, 77.00, "MERCEDES", false)
+            new Car("1234", 89.00, "TESLA", true),
+            new Car("5678", 50.00, "AUDI", false),
+            new Car("2468", 77.00, "MERCEDES", false)
     );
 
     public List<Car> selectAllCars() {
@@ -21,3 +21,4 @@ public class CarDAO{
 
 
 }
+

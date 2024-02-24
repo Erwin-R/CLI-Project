@@ -3,7 +3,7 @@ package com.potatochip.car;
 import java.util.Objects;
 
 public class Car {
-    private int regNumber;
+    private String regNumber;
     private double rentalPricePerDay;
     private String brand;
     private boolean isElectric;
@@ -11,18 +11,18 @@ public class Car {
     public Car() {
     }
 
-    public Car(int regNumber, double rentalPricePerDay, String brand, boolean isElectric) {
+    public Car(String regNumber, double rentalPricePerDay, String brand, boolean isElectric) {
         this.regNumber = regNumber;
         this.rentalPricePerDay = rentalPricePerDay;
         this.brand = brand;
         this.isElectric = isElectric;
     }
 
-    public int getRegNumber() {
+    public String getRegNumber() {
         return regNumber;
     }
 
-    public void setRegNumber(int regNumber) {
+    public void setRegNumber(String regNumber) {
         this.regNumber = regNumber;
     }
 

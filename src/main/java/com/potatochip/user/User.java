@@ -10,6 +10,7 @@ import java.util.UUID;
 public class User {
     private UUID id;
     private String name;
+
     public User() {
     }
 
@@ -18,6 +19,8 @@ public class User {
         this.name = name;
 //        this.userCars = new ArrayList<>();
     }
+
+
 
     public UUID getId() {
         return id;

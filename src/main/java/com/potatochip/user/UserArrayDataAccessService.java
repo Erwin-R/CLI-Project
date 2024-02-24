@@ -1,9 +1,12 @@
 package com.potatochip.user;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 public class UserArrayDataAccessService implements UserDAO {
     private static final User[] users;
 
