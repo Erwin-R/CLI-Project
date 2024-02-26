@@ -3,6 +3,7 @@ package com.potatochip.booking;
 import com.potatochip.car.Car;
 import com.potatochip.car.CarService;
 import com.potatochip.user.User;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class CarBookingService {
     private final CarBookingDAO carBookingDAO;
     private final CarService carService;

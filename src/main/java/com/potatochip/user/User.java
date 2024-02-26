@@ -1,13 +1,17 @@
 package com.potatochip.user;
 
 import com.potatochip.car.Car;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
 public class User {
+    @Id
     private UUID id;
     private String name;
 
@@ -58,5 +62,7 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
+
 
 }

@@ -1,5 +1,7 @@
 package com.potatochip.car;
 
+import org.springframework.stereotype.Repository;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Repository
 public class CarDAO{
     private static final List<Car> cars = Arrays.asList(
             new Car("1234", 89.00, "TESLA", true),
